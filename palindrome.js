@@ -4,24 +4,29 @@
 @description Determines if a number is a palindrome (read the same ltr or rtl), using only stack frames 
 based on http://leetcode.com/2012/01/palindrome-number.html
 */
+function isPalindrome(y) {
 
-var isPalindrome = function(y){
-	
-	return (
-		isPal = function(x) {
-	    
-	    //negative protection
-	    if (x < 0)   return false;
-	    //base case, when the number = 0
-	    if (x === 0) return true;
+  var isPal = function (x) {
 
-	    //create the recursion for the var passed by value(x), and compare each digit to the ref var(y)
-	    if (isPal(Math.floor(x / 10), y) && (x%10 == y%10)) {
-	        // we've gotten to the bottom of the recursion, now start modifying the reference (y)
-	        y = Math.floor(y / 10);
-	        return true;
-	    } else {
-	        return false;
-	    }
-	})(y);
-}
+    // negative protection
+    if (x < 0) { return false; }
+
+    // base case, when the number = 0
+    if (x === 0) { return true; }
+
+
+    // Start recursively splitting off each LSD for the var passed by value(x). 
+    // Compare each one to the MSD of var(y), on the upswing of the recursion.
+    // (y), in this case, is simulating a 'reference' by accessing the y in the closure.
+
+    if (isPal(Math.floor(x / 10)) && (x % 10 == y % 10)) {
+
+      // we've gotten to the bottom of the recursion, now start modifying the reference (y)
+      y = Math.floor(y / 10);
+      return true;
+    } else {
+      return false;
+    }
+  };
+  return isPal(y);
+};
