@@ -20,7 +20,6 @@ function isPalindrome(y) {
     // (y), in this case, is simulating a 'reference' by accessing the y in the closure.
 
     if (isPal(Math.floor(x / 10)) && (x % 10 == y % 10)) {
-
       // we've gotten to the bottom of the recursion, now start modifying the reference (y)
       y = Math.floor(y / 10);
       return true;
