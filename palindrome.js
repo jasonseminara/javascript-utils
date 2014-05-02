@@ -1,26 +1,27 @@
-function isPalindrome(y){
-	function isPal(x) {
+/* 
+@author Jason Seminara 
+@date 2014-05-02
+@description Determines if a number is a palindrome (read the same ltr or rtl), using only stack frames 
+based on http://leetcode.com/2012/01/palindrome-number.html
+*/
+
+var isPalindrome = function(y){
+	
+	return (
+		isPal = function(x) {
 	    
-	    if (x < 0) {
-	        console.log("lt 0");
-	        return false;
-	    }
-	    if (x === 0) {
-	        console.log("eq 0");
-	        return true;
-	    }
+	    //negative protection
+	    if (x < 0)   return false;
+	    //base case, when the number = 0
+	    if (x === 0) return true;
 
-	    console.log("before");
-
-	    if (isPal(Math.floor(x / 10), y) && (x % 10 == y % 10)) {
-	        console.log("true", x, y, x % 10, y % 10);
+	    //create the recursion for the var passed by value(x), and compare each digit to the ref var(y)
+	    if (isPal(Math.floor(x / 10), y) && (x%10 == y%10)) {
+	        // we've gotten to the bottom of the recursion, now start modifying the reference (y)
 	        y = Math.floor(y / 10);
-
 	        return true;
 	    } else {
-	        console.log("false", x, y, x % 10, y % 10);
 	        return false;
 	    }
-	}
-	return isPal(y);
+	})(y);
 }
